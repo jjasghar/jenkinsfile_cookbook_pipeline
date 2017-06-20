@@ -24,6 +24,14 @@ test bed every time you run your Pipeline.
 This is only a framework, you will need to configure a few of the settings for your
 specific use case, but this should be the lions share of the work you need.
 
+Here's an example of the Blue Ocean Pipeline:
+
+![](./images/blueocean.png)
+
+And the "default" Pipeline plugin for Jenkins:
+
+![](./images/pipeline.png)
+
 ## Jenkinsfile
 
 I'll walk through each section explain what each does, to make sure we are on the same
