@@ -36,7 +36,7 @@ apt-get install -y docker-ce'''
         }
         stage('\u27A1 Verify Docker') {
             steps {
-                sh 'docker run hello-world'
+                sh 'docker run --rm hello-world'
             }
         }
         stage('\u27A1 Verify ChefDK') {
