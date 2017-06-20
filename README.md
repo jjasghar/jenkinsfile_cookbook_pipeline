@@ -116,15 +116,33 @@ Now that you have it in a location that your Jenkins instance can reach it, all 
 and you should be able to pull the container down now:
 
 ```
-  docker {
-    reuseNode false
-    args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
-    image 'chefdkkeysv1'
-  }
+docker {
+  reuseNode false
+  args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
+  image 'chefdkkeysv1'
+}
 ```
 
 With this, your final stage of `stage('\u27A1 Upload to Chef Server') {` should start publishing to your
 chef server if everything passes.
+
+## Input or Approval Gate
+
+If you would like to add a gate to `Approval` or `Disapproval` it's a simple line to add!
+
+```
+stage('\u27A1 Upload to Chef Server') {
+  steps {
+    input 'Do you want to proceed to the Deployment?'
+    sh 'chef exec knife cookbook upload sudo -o ../'
+  }
+}
+```
+
+Here's an image of what it looks like on Blue Ocean!
+
+![](./images/paused_blueocean.png)
+
 
 ## Conclusion
 
