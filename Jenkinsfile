@@ -72,7 +72,7 @@ apt-get install -y docker-ce'''
             }
         }
         stage('\u27A1 Upload to Chef Server') {
-            steps { sh 'chef exec knife cookbook upload -o /REPO'
+            steps { sh 'chef exec knife cookbook upload COOKBOOKNAME -o ../'
             }
         }
     }
