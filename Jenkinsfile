@@ -1,8 +1,3 @@
-node {
-    stage('Checkout code') {
-        git 'REPO'
-    }
-}
 pipeline {
     agent {
         docker {
@@ -51,6 +46,11 @@ apt-get install -y docker-ce'''
             }
         }
         stage('\u27A1 Run test-kitchen') {
+            
+            when {
+                anyOf { branch 'master'; branch 'staging'; branch 'production' }
+            }
+            
             steps {
                 parallel(
                     "centos": {
@@ -72,7 +72,13 @@ apt-get install -y docker-ce'''
             }
         }
         stage('\u27A1 Upload to Chef Server') {
-            steps { sh 'chef exec knife cookbook upload COOKBOOKNAME -o ../'
+            
+            when {
+                branch 'production'
+            }
+            
+            steps { 
+                sh 'chef exec knife cookbook upload COOKBOOKNAME -o ../'
             }
         }
     }
