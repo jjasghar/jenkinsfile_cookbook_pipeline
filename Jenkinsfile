@@ -48,7 +48,7 @@ apt-get install -y docker-ce'''
         stage('\u27A1 Run test-kitchen') {
             
             when {
-                anyOf { branch 'master'; branch 'staging' }
+                anyOf { branch 'master'; branch 'staging'; branch 'production' }
             }
             
             steps {
